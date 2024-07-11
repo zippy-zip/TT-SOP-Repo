@@ -8,13 +8,13 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-true_w = input("Please enter the scale-measured weight of the object: ")
+#true_w = input("Please enter the scale-measured weight of the object: ")
 
 # code for testing the TT as a scale
 
 '''Opening Input File'''
 
-input_file_path = 
+input_file_path =  r"C:\Users\zoech\Desktop\Jacks Reserach 2024\Code\Testing TT as a Scale\weight accuracy test 3 (199.697g).txt"
 readings = []
  
 # Read the data
@@ -24,7 +24,9 @@ with open(input_file_path, 'r') as file:
         if line.startswith('Reading:'):
             reading = float(line.split(' ')[1])
             readings.append(reading)
-        
+        elif "True weight" in line:
+            true_w = line.split(' ')[2] + ' ' + line.split(' ')[3]
+            
        
 '''Creating Plot'''
 
@@ -56,8 +58,8 @@ residuals = y - y_fit
 std_dev = np.std(residuals)
  
 plt.text(0.95, 0.2, f'Standard Deviation: {std_dev:.5f}\nAverage: {avg:.5f} g\nTrue Weight: {true_w}', 
-         horizontalalignment='right', verticalalignment='bottom', transform=plt.gca().transAxes,
-         fontsize=12, bbox=dict(facecolor='yellow', alpha=0.5))
+          horizontalalignment='right', verticalalignment='bottom', transform=plt.gca().transAxes,
+          fontsize=12, bbox=dict(facecolor='yellow', alpha=0.5))
 
 # Labeling axes and title
 plt.xlabel('Reading Number')
