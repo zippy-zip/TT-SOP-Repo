@@ -8,8 +8,6 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-#true_w = input("Please enter the scale-measured weight of the object: ")
-
 # code for testing the TT as a scale
 
 '''Opening Input File'''
