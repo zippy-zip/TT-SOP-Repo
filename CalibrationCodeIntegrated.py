@@ -5,13 +5,14 @@ Created on Wed Jun 26 14:36:44 2024
 @author: zoech
 """
 
+# Required libraries.
 import os
 import matplotlib.pyplot as plt
 import numpy as np
 
 ''' reading input file '''
 
-# Input file path
+# Input file path and initializing empty lists 
 input_file_path =  
 output_file_path = 
 readings = []
@@ -19,6 +20,9 @@ weights = []
 ratios = []
  
 # Read the data
+# Goes through input file and parses information by category. Readings (captured by the TT) 
+# are added to the empty "readings" list. Weights (manually input by user) are added to the 
+# empty "weights" list. 
 with open(input_file_path, 'r') as file:
     for line in file:
         line = line.strip()
@@ -29,6 +33,8 @@ with open(input_file_path, 'r') as file:
             weight = float(line.split(' ')[1])
             weights.append(weight)
 
+# Calculate the ratio between each individual reading and weight. 
+# This is the first step to developing a calibration factor.
 for i in range(len(readings)):
     if weights[i] == 0:
         ratio = 0
@@ -44,7 +50,8 @@ with open(output_file_path, 'x') as outfile:
    
     # Set number of rows
     max_rows = max(len(readings), len(weights),len(ratios))
-   
+
+ # Writes out each individual reading, weight, and ratio and calculates the average ratio.
     for i in range(max_rows):
         reading = readings[i] if i < len(readings) else ''
         weight = weights[i] if i < len(weights) else ''
@@ -59,6 +66,10 @@ print(f"Data has been written to {output_file_path}")
 
 ''' plotting '''
 
+# Plots the independent variable (known weight) on the x axis and the 
+# dependent variable (TT weight, readings) on the y axis. The slope of 
+# this line represents the calibration factor. The standard deviation 
+# represents how accurately the points follow this slope. 
 # Known Weight
 x = weights
 
