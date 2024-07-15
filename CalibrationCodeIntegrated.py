@@ -13,7 +13,7 @@ import numpy as np
 
 # Input file path
 input_file_path =  
-output_file_path = r"C:\Users\zoech\Desktop\Jacks Reserach 2024\Code\Z-outputData1-jul1.txt"
+output_file_path = 
 readings = []
 weights = []
 ratios = []
